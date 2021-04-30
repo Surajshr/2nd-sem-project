@@ -1,0 +1,436 @@
+#include<conio.h>
+#include<stdio.h>
+#include<iostream.h>
+#include<graphics.h>
+#include<dos.h>
+#include<process.h>
+class graphLine
+{       private:
+		int x,y,i;
+	public:
+
+		void X_axis();
+		void Y_axis();
+		void Axis_side();
+};
+void graphLine::X_axis()
+{
+	int var=420;
+	int gd=DETECT,gm;
+	initgraph(&gd,&gm,"C:\\turboc3\\BGI");
+	x=getmaxx();
+	y=getmaxy();
+	   for(i=0;i<=y;i=i+6)
+		{
+			   line(var-2,5+i,var+2,5+i); //vertical points
+		}
+		line(var,0,var,y);		//line of x-axis
+		line(200,0,200,y);             //side lines
+}
+void graphLine:: Y_axis()
+	{
+	     //	int var=420;
+	       for(i=200;i<=x;i=i+5)
+		{
+			 line(5+i,y/2-2,5+i,y/2+2);    //hoizental points
+		}
+		line(200,y/2,x,y/2);		// line of y-axis
+	}
+
+		//finish of the line on y-axis //
+void graphLine::Axis_side()
+	{
+		outtextxy(420+5,y/2+5,"0");	//origin
+		outtextxy(420-15,5,"Y");	//point of y-axis
+		outtextxy(x-10,y/2-10,"X");	//point of x-axis
+		outtextxy(420+10,y-25,"-Y");	//point of negative x-axis
+		outtextxy(205,y/2-10,"-X"); 	// point of negative y-axis
+	}
+
+class BasicGraph
+{       private:
+		int x1,x2,y1,y2,xmax,ymax;
+	public:
+		void GetsPoint();
+};
+void BasicGraph:: GetsPoint()
+		{
+			int x1=0,y1=0;
+			int y;
+			int x2,y2;
+			int var=420;
+			int xmax,ymax;
+			int j;
+
+		       //	xmax=getmaxx();
+			ymax=getmaxy();
+			char ch;
+			do
+			{
+			cout<<" Enter the co-ordinates:"<<endl;
+
+			cout<<" Point (x):";
+			cin>>x2;
+			cout<<" Point (y):";
+			cin>>y2;
+
+			line(var+5*x1,ymax/2-6*y1,var+5* x2, ymax/2-6*y2);
+			x1=x2;
+			y1=y2;
+			outtextxy(var+5*x1,ymax/2-6*y1,"p");
+			circle(var+5*x1,ymax/2-6*y1,1.5);
+			cout<<" If any points(Y/N)?"<<endl;
+			ch=getch();
+			}
+			while(ch=='Y'||ch=='y');
+	}
+class menue
+{
+	public:
+		void design()
+		{       // TOP TO DOWN LINE//
+			setcolor(5);
+			outtextxy(170,120,"||");
+			outtextxy(170,140,"||");
+			outtextxy(170,160,"||");
+			outtextxy(170,180,"||");
+			outtextxy(170,200,"||");
+			outtextxy(170,220,"||");
+			outtextxy(170,240,"||");
+			outtextxy(170,260,"||");
+			outtextxy(170,280,"||");
+			outtextxy(170,300,"||");
+			outtextxy(170,320,"||");
+			//RIGHT TO LEFT LINE//
+			outtextxy(160,280,"===========================");
+
+		}
+
+		void option()
+		{
+			int gd=DETECT,gm;
+			initgraph(&gd,&gm,"C:\\turboc3\\BGI");
+			setcolor(14);
+			settextstyle(2 ,HORIZ_DIR,6);
+			outtextxy(130,100,"->> CHOSE TASK :: ");
+			setcolor(5);
+			outtextxy(210,130,"	#1 BASIC");
+			outtextxy(210,160,"	#2 ROTATION");
+			outtextxy(210,190,"	#3 REFLECTION");
+			outtextxy(210,220,"	#4 ABOUT");
+			outtextxy(210,250,"	#5 EXIT");
+		       //	setcolor(6);
+		      //	outtextxy(130,280,"===============================================");
+
+
+		}
+		void choices()
+		{      // int choice;
+			setcolor(14);
+			outtextxy(200,310,"Enter your Choice(1-5) :: ");
+		}
+		void default1()
+		{       setcolor(RED);
+			outtextxy(200,340,"[ Error:]:Enter correct option");
+		}
+
+
+};
+class firstpage
+{
+	public:
+		void text();
+		void lines();
+};
+void firstpage::text()
+{
+	int gm,gd=DETECT;
+	initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+	setcolor(9);
+	settextstyle(7,0,4);
+	outtextxy(148,180,"....Welcome To ");
+	outtextxy(240,240,"''Graph Plotter......''");
+	setcolor(YELLOW);
+	setfillstyle(SOLID_FILL,YELLOW);
+    //	cleardevice();
+}
+void firstpage::lines()
+{
+       /*	setcolor(4);
+	settextstyle(4,0,1);
+	outtextxy(120,180,"||");
+	outtextxy(120,200,"||");
+	outtextxy(120,220,"||");
+	outtextxy(120,240,"||");
+	outtextxy(120,260,"||");
+	outtextxy(120,280,"||");
+	outtextxy(120,300,"||");
+	//outtextxy(170,320,"||");
+			//RIGHT TO LEFT//
+	outtextxy(100,280,"===================================");   */
+	int r=1;
+	while(!kbhit())
+	{
+		setcolor(r);
+		settextstyle(0,0,1);
+		outtextxy(340,300,"Press any key...");
+		delay(500);
+		r++;
+	}
+
+}
+/*	<< Here Option of basic graphic options >>*/
+
+class BasicOption
+{
+
+	public:
+		void option()
+		{
+		 int gm,gd=DETECT;
+		initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+
+			setcolor(14);
+			settextstyle(2 ,HORIZ_DIR,6);
+			outtextxy(130,100,"->> OPTIONS");
+			setcolor(7);
+			outtextxy(170,130,"	#1 Circle");
+			outtextxy(170,150,"	#2 Triangle");
+			outtextxy(170,170,"	#3 Rectangle");
+			outtextxy(170,190,"	#4 Lines");
+			outtextxy(300,400,"MAIN MENUE: Press '5'");
+		}
+		void design();
+};
+void BasicOption:: design()
+		{
+			setcolor(7);
+			outtextxy(150,150,"||");
+			outtextxy(150,170,"||");
+			outtextxy(150,190,"||");
+			outtextxy(150,210,"||");
+			outtextxy(150,230,"||");
+			outtextxy(130,220,"=================");
+			int r=1;
+			while(!kbhit())
+			{
+				setcolor(r);
+				settextstyle(0,0,1);
+				outtextxy(160,260,"Chose the Option(1-4):");
+				delay(500);
+				r++;
+			}
+		  }
+/*   ^^	<<End of BasicOption Class>> ^^  */
+
+class Circle
+{
+	private:
+		int x,y,r;
+
+	public:
+
+		void Operation()
+		{
+
+			int gd=DETECT,gm;
+			initgraph(&gd,&gm,"C:\\turboc3\\BGI");
+			cout<<"enter the center of the circle"<<endl;
+			cout<<"X-axis:";
+			cin>>x;
+			cout<<"Y-axis:";
+			cin>>y;
+			cout<<"Enter the Radious of the circle";
+			cin>>r;
+			int var=420;
+			int xmax,ymax;
+			xmax=getmaxx();
+			ymax=getmaxy();
+			//circle(xmax/2+10*x,ymax/2-10*y,r);
+			circle(var+5*x,ymax/2-6*y,r);
+		       //	circle(var+5*x,ymax/2-10*y,1.5);
+		    //	cout<<"\nCenter(x,y):"<<x<<","<<y;
+		      //	cout<<"\nRadious    :"<<r;
+		 }
+};
+
+class Triangle
+{
+	private:
+		int x1,y1,x2,y2,x3,y3;
+		int xmax,ymax;
+	public:
+		void GetData1()
+		{
+
+			int gd=DETECT,gm;
+			initgraph(&gd,&gm,"C:\\turboc3\\BGI");
+			cout<<"Enter the point of the Triangle"<<endl;
+			cout<<"Point X1:";
+			cin>>x1;
+			cout<<"Point Y1:";
+			cin>>y1;
+			cout<<"Point X2:";
+			cin>>x2;
+			cout<<"Point Y2:";
+			cin>>y2;
+			cout<<"Point X3:";
+			cin>>x3;
+			cout<<"point Y3:";
+			cin>>y3;
+		 }
+		 void Operation1()
+		 {
+			xmax=getmaxx();
+			ymax=getmaxy();
+			int var=420;
+		   /*	line(xmax/2+10*x1,ymax/2-10*y1,xmax/2+10*x2,ymax/2-10*y2);
+			line(xmax/2+10*x2,ymax/2-10*y2,xmax/2+10*x3,ymax/2-10*y3);
+			line(xmax/2+10*x3,ymax/2-10*y3,xmax/2+10*x1,ymax/2-10*y1);*/
+			line(var+5*x1,ymax/2-6*y1,var+5*x2, ymax/2-6*y2);
+			line(var+5*x2,ymax/2-6*y2,var+5*x3,ymax/2-6*y3);
+			line(var+5*x3,ymax/2-6*y3,var+5*x1,ymax/2-6*y1);
+			cout<<"\n(x1,y1) :"<<x1<<","<<y1;
+			cout<<"\n(x2,y2) :"<<x2<<","<<y2;
+			cout<<"\n(x3,y3) :"<<x3<<","<<y3;
+		 }
+};
+//<<< main function start from here >>>//
+
+void main()
+{
+
+	graphLine s;
+	BasicGraph p;
+	menue m;
+	firstpage f;
+	BasicOption B;
+	Circle c;
+	Triangle  T;
+
+	int a;
+	char choice;
+	f.text();
+	f.lines();
+	getch();
+	fun:
+
+	system("cls");
+	m.option();
+	m.design();
+	m.choices();
+	choice=getche();
+	switch(choice)
+	{
+		case '1':
+		{
+			 char choice2;
+
+			 fun2:
+			 B.option();
+			 B.design();
+			 choice2=getche();
+			 switch(choice2)
+			 {
+				case'1':    /* Nested switch case */
+				{
+
+				      s.X_axis();
+				      s.Y_axis();
+				      s.Axis_side();
+				     // c.GetData();
+				      c.Operation();
+				      getch();
+				      goto fun2;
+				}
+				case '2':
+				{
+				      T.GetData1();
+				      graphdefaults();
+				      s.X_axis();
+				      s.Y_axis();
+				      s.Axis_side();
+				      T.Operation1();
+					getch();
+					goto fun2;
+				 // break;
+
+				}
+				case '3':
+					{
+					cout<<"this part is underconstruction"<<endl;
+					goto fun2;
+					}
+				case '4':
+				{
+					p.GetsPoint();
+					graphdefaults();
+					s.X_axis();
+					s.Y_axis();
+					s.Axis_side();
+				      //	p.Operation();
+					getch();
+					goto fun2;
+				}
+				case'5':
+				{
+					goto fun;
+				}
+				default:
+				{
+					m.default1();
+					delay(1000);
+					goto fun2;
+				}
+			}
+
+		       // <<< PROGRAM FOR DROWING BASIC LINE GRAPHICS >>>>> //
+
+		 }
+		case '2':
+		{
+			//clrscr();
+		      //	 graphdefaults();
+		      cleardevice();
+			cout<<"graph of the rotation";
+			getch();
+			goto fun;
+		}
+		case '3':
+		{
+		      //	clrscr();
+		       //	graphdefaults();
+		       cleardevice();
+			cout<<"Graph of reflection";
+			getch();
+			goto fun;
+		}
+		case '4':
+		{
+			cleardevice();
+			cout<<"Detail of the software and the developers";
+			getch();
+			goto fun;
+
+		}
+
+		case '5':
+		{
+		       exit(0);
+		       break;
+
+		}
+		default:
+		{
+			m.default1();
+			delay(1000);
+			goto fun;
+		}
+	}
+getch();
+}
+
+
+
+
+
